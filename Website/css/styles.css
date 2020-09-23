@@ -1,0 +1,16 @@
+﻿/* VANHALTEREN.CA Style sheet */
+@charset "UTF-8";
+
+/***************************/
+/*       TYPOGRAPHY        */
+/***************************/
+
+@font-face {
+    font-family: 'QuicksandRegular';
+    src: url('../fonts/quicksand/static/Quicksand-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'QuicksandBold';
+    src: url('../fonts/quicksand/static/Quicksand-Bold.ttf') format('truetype');
+}
