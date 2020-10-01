@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vanhalteren.ca Contact Form</title>
+</head>
+<body>
+<form action="http://www.vanhalteren.ca/contactrecieve" method="post">
+    <H2> Talk to me: </H2>
+    <H4> To get in contact with me please fill out this form below. </H4>
+    <p>
+        Name: <input type="text" name="name" required="required" />
+        Email: <input type="email" name="email" required="required" />
+    </p>
+    <p>
+        Your location:
+        <select name="location">
+            <option value="None">Prefer not to say</option>
+            <option value="Canada">Canada</option>
+            <option value="USA">USA</option>
+            <option value="Canada">EU</option>
+            <option value="Canada">Other</option>
+        </select>
+    </p>
+    <p>
+        How did you hear about us:
+        <select name="referrer">
+            <option value="None">Prefer not to say</option>
+            <option value="Upwork">Upwork</option>
+            <option value="GitHub">GitHub</option>
+            <option value="Google Search">Google search</option>
+            <option value="Friend">Fried or college</option>
+            <option value="Other">Other</option>
+        </select>
+    </p>
+    <p> 
+        Subject: <input type="text" name="subject" required="required" />
+    </p>
+    <textarea placeholder="Tell me about it..." name="body" cols="60" rows="20" ></textarea>
+    <hr />
+    <input type="submit" value="Send" />
+</form>
+</body>
+</html>

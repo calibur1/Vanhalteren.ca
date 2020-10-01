@@ -14,3 +14,7 @@
     font-family: 'QuicksandBold';
     src: url('../fonts/quicksand/static/Quicksand-Bold.ttf') format('truetype');
 }
+
+p, h1, h2, h3, h4 {
+    font-family: 'QuicksandRegular';
+}
