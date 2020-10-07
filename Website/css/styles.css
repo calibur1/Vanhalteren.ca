@@ -1,9 +1,11 @@
-﻿/* VANHALTEREN.CA Style sheet */
-@charset "UTF-8";
+﻿@charset "UTF-8";
+/* VANHALTEREN.CA Style sheet */
 
-/***************************/
-/*       TYPOGRAPHY        */
-/***************************/
+
+
+
+/******************************/
+/*        TYPOGRAPHY          */
 
 @font-face {
     font-family: 'QuicksandRegular';
@@ -15,6 +17,84 @@
     src: url('../fonts/quicksand/static/Quicksand-Bold.ttf') format('truetype');
 }
 
-p, h1, h2, h3, h4 {
-    font-family: 'QuicksandRegular';
+* {
+    /* Set everything by default to Quicksand */
+    font-family: 'QuicksandRegular', serif;
+}
+
+
+
+
+/******************************/
+/*          TOP BAR           */
+
+#topBar {
+    /* top bar is made sticky with a high z index to overlay on other elements */
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 2vmin;
+    z-index: 10;
+    
+    
+    /* we use flex to set the position of the items in the box */
+    display: flex;
+    justify-content: space-between;
+    
+    background-image: linear-gradient(rgb(23,26,30),rgba(23,26,30,0));
+}
+
+#iconTitle img {
+    width: 72px;
+    height: 72px;
+}
+@media all and (max-width: 630px) { #iconTitle img { display: none; } }
+
+/* H2 from the header bar.  We remove this below when the screen width drops below 930px */
+.titleH2 {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    opacity: 0.75;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+@media all and (max-width: 930px) { .titleH2 { display: none; } }
+
+#iconTitle span.domain {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 50%;
+    opacity: 0.75;
+}
+
+#topBar .links {
+    display: flex;
+}
+
+#topBar .links ul {
+    font-size: 120%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    padding-right: 4vmin;
+    text-decoration: none;
+    list-style-type: none;
+}
+#topBar .links li { margin-top: 0px; padding: 4px; border-bottom: 2px solid rgba(78,160,232,0) }
+#topBar .links a:link { text-decoration: none; color: black; }
+#topBar .links a:visited { color: black; }
+#topBar .links a:hover { color: darkslateblue; }
+#topBar .links a:focus { color: darkslateblue; }
+
+
+
+
+/******************************/
+/*         MAIN BODY          */
+
+body {
+    background-color: #ECEFF1;
+    width: 100vw;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
