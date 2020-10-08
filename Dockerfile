@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
-COPY WebApplication/*.sln .
+COPY *.sln .
 COPY WebApplication/*.csproj ./WebApplication/
 RUN dotnet restore
 
