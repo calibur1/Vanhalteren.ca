@@ -27,10 +27,7 @@ namespace WebApplication {
         public void ConfigureServices(IServiceCollection services) {
 
             services.AddDbContext<RazorPagesMovieContext>(options => {
-                if(Environment.IsDevelopment())
-                    options.UseSqlite(Configuration.GetConnectionString("MovieContext"));
-                else
-                    options.UseSqlServer(Configuration.GetConnectionString("MovieContext"));
+                options.UseSqlite(Configuration.GetConnectionString("MovieContextConnectionSqlite"));
             });
 
             services.AddRazorPages();
