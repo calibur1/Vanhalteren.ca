@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
 
-namespace WebApplication.Pages_Movies
+namespace WebApplication.Pages.Movies
 {
     public class DeleteModel : PageModel
     {
@@ -21,13 +18,8 @@ namespace WebApplication.Pages_Movies
         [BindProperty]
         public Movie Movie { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)

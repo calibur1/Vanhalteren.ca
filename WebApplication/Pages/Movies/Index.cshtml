@@ -1,5 +1,5 @@
 @page
-@model WebApplication.Pages_Movies.IndexModel
+@model WebApplication.Pages.Movies.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,22 +10,34 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Price)
-            </th>
-            <th></th>
+            <form>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movie[0].Title)
+                    <input type="text" asp-for="SearchString"/>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movie[0].Genre)
+                    <select asp-for="MovieGenre" asp-items="Model.Genres">
+                        <option value="">All</option>
+                    </select>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movie[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movie[0].Rating)
+                </th>
+                <th>
+                    <input type="submit" value="Filter"/>
+                </th>
+            </form>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +54,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

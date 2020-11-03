@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,36 +10,61 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-namespace WebApplication {
-    public class Startup {
-
+namespace WebApplication
+{
+    public class Startup
+    {
         public readonly IConfiguration Configuration;
-        public readonly IWebHostEnvironment Environment;
-        
-        
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment) {
+        public readonly IWebHostEnvironment WebHostEnvironment;
+
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        {
             Configuration = configuration;
-            Environment = environment;
+            WebHostEnvironment = webHostEnvironment;
         }
 
-        
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
 
-            services.AddDbContext<RazorPagesMovieContext>(options => {
-                options.UseSqlite(Configuration.GetConnectionString("MovieContextConnectionSqlite"));
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            //var databaseConnectionString = 
+            Console.WriteLine("GetEnvironmentVariables: ");
+            foreach (DictionaryEntry item in Environment.GetEnvironmentVariables())
+            {
+                Console.WriteLine($" {item.Key} = {item.Value}");
+            }
+
+            
+            
+            
+            /*
+            services.AddDbContext<RazorPagesMySqlContext>(options =>
+            {
+                /*if (Environment.IsDevelopment())
+                    options.UseSqlite(Configuration.GetConnectionString("MovieContextConnectionSqlite"));
+                else#1#
+                    options.UseMySql(Configuration.GetConnectionString("MovieContextConnectionMySqlProduction"));
             });
+            */
+
+            services.AddDbContextPool<RazorPagesMovieContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("MovieContextConnectionMySqlProduction")));
 
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.IsDevelopment()) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
             }
-            else {
+            else
+            {
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();

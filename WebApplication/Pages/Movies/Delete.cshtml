@@ -1,5 +1,5 @@
-@page
-@model WebApplication.Pages_Movies.DeleteModel
+@page "{id:int}"
+@model WebApplication.Pages.Movies.DeleteModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -35,6 +35,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Rating)
         </dd>
     </dl>
     

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
 
-namespace WebApplication.Pages_Movies
+namespace WebApplication.Pages.Movies
 {
     public class DetailsModel : PageModel
     {
@@ -20,13 +20,8 @@ namespace WebApplication.Pages_Movies
 
         public Movie Movie { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Movie == null)

@@ -2,14 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    partial class RazorPagesMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20201103000447_RatingField")]
+    partial class RatingField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,25 +25,19 @@ namespace WebApplication.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasColumnType("varchar(24) CHARACTER SET utf8mb4")
-                        .HasMaxLength(24);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("Rating")
-                        .IsRequired()
-                        .HasColumnType("varchar(16) CHARACTER SET utf8mb4")
-                        .HasMaxLength(16);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("varchar(60) CHARACTER SET utf8mb4")
-                        .HasMaxLength(60);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 

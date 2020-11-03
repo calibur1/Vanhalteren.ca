@@ -8,32 +8,37 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebApplication.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    [Migration("20201007205603_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201103001316_RatingFieldFixedStringLength")]
+    partial class RatingFieldFixedStringLength
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("WebApplication.Models.Movie", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Genre")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("Rating")
+                        .HasColumnType("varchar(16) CHARACTER SET utf8mb4")
+                        .HasMaxLength(16);
 
                     b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("ID");
 
