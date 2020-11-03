@@ -9,6 +9,4 @@ obj/
 # used by rider
 .idea
 
-# contains development database information
-dbconnection.json
 appsettings.Development.json
