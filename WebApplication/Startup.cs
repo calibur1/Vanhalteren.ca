@@ -30,7 +30,10 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var databaseConnectionString = 
+            //Log out if app is dev or prod
+            Console.WriteLine($"WebHostEnvironment: {WebHostEnvironment.EnvironmentName}");
+             
+            //log out
             Console.WriteLine("GetEnvironmentVariables: ");
             foreach (DictionaryEntry item in Environment.GetEnvironmentVariables())
             {
