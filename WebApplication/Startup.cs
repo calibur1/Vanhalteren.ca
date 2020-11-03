@@ -39,9 +39,10 @@ namespace WebApplication
             
             //Setup the database context with either the development appsettings or from local environment variables
             services.AddDbContextPool<RazorPagesMovieContext>(
-                options => options.UseMySql(WebHostEnvironment.IsDevelopment()
+                options => options.UseMySql((WebHostEnvironment.IsDevelopment()
                     ? Configuration.GetConnectionString("DBConnectionString")
                     : Environment.GetEnvironmentVariable("CONNECTIONSTRING_TESTDB"))
+                                            ?? throw new NullReferenceException("Services startup, DBContext environment variable not found"))
             );
 
             services.AddRazorPages();
