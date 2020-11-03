@@ -36,22 +36,13 @@ namespace WebApplication
             {
                 Console.WriteLine($" {item.Key} = {item.Value}");
             }
-
             
-            
-            
-            /*
-            services.AddDbContext<RazorPagesMySqlContext>(options =>
-            {
-                /*if (Environment.IsDevelopment())
-                    options.UseSqlite(Configuration.GetConnectionString("MovieContextConnectionSqlite"));
-                else#1#
-                    options.UseMySql(Configuration.GetConnectionString("MovieContextConnectionMySqlProduction"));
-            });
-            */
-
-            services.AddDbContextPool<RazorPagesMovieContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("MovieContextConnectionMySqlProduction")));
+            //Setup the database context with either the development appsettings or from local environment variables
+            services.AddDbContextPool<RazorPagesMovieContext>(
+                options => options.UseMySql(WebHostEnvironment.IsDevelopment()
+                    ? Configuration.GetConnectionString("DBConnectionString")
+                    : Environment.GetEnvironmentVariable("CONNECTIONSTRING_TESTDB"))
+            );
 
             services.AddRazorPages();
         }
